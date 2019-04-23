@@ -1,0 +1,87 @@
+<html ng-app="noteApp">
+
+<head>
+    <title>Notes App</title>
+</head>
+
+<body ng-controller="formController as ctrl">
+    <form novalidate name="myForm" ng-submit="ctrl.submit()">
+
+        <input type="text" name="uName" ng-model="ctrl.user.username" class="username" required ng-minlength="4"
+            placeholder="User Name" /></br>
+        <input type="password" name="pwd" ng-model="ctrl.user.password" class="password" required
+            placeholder="Password" />
+        </br>
+        <ng-form name="myProfile">
+            <input type="text" name="firstName" ng-model="ctrl.user.profile.firstName" placeholder="First Name"
+                required></br>
+            <input type="text" name="middleName" ng-model="ctrl.user.profile.middleName" placeholder="Middle Name"
+                required></br>
+            <input type="text" name="lastName" ng-model="ctrl.user.profile.lastName" placeholder="last Name"
+                required></br>
+            <input type="date" name="dob" ng-model="ctrl.user.profile.dob" placeholder="Date of Birth" required></br>
+            <textarea ng-model="ctrl.user.address" required ng-minlength="10"></textarea></br>
+            <input type="checkbox" ng-model="ctrl.user.agreee" ng-true-value="YES" , ng-false-value="NO" /> Agress </br>
+            <input type="checkbox" ng-checked="ctrl.user.agreee === 'YES'" /></br> Current State : {{ctrl.user.agreee}}
+
+
+            <div ng-init="ctrl.user.gender ='otherGender'">
+                <input type="radio" name="gender" ng-model="ctrl.user.gender" value="male"> Male
+                <input type="radio" name="gender" ng-model="ctrl.user.gender" value="female"> female
+                <input type="radio" name="gender" ng-model="ctrl.user.gender" value="otherGender">{{otherGender}} other
+                gender
+            </div>
+
+            <div>
+                <select ng-model="ctrl.user.location" ng-init="ctrl.user.location ='India'">
+                    <option value="USA">USA</option></br>
+                    <option value="India">INDIA</option></br>
+                    <option value="UK">UK</option></br>
+                    <option value="other">Others</option></br>
+                </select>
+            </div>
+            </br>
+            <div>
+                <select ng-model="ctrl.user.selectedCountry" ng-options="c.label for c in ctrl.user.countries">
+                </select>
+                Selected Country : {{ctrl.user.selectedCountry}} </div><br>
+            </select>
+            </div>
+        </br></br>
+            <div>
+                <select ng-model="ctrl.user.selectedCountryId" ng-options="c.id as c.label for c in ctrl.user.countries">
+                </select>
+                Selected Country ID : {{ctrl.user.selectedCountryId}}
+            </div>
+
+        </ng-form></br>
+        <span ng-show="myForm.myProfile.$invalid">
+            Please fill out the profile information
+        </span></br>
+        <input type="submit" value="Submit" ng-disabled="myProfile.$invalid" ng-submit="ctrl.submiit()" />
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+    </script>
+
+    <script type="text/javascript">
+        angular.module("noteApp", []).controller("formController", [function () {
+            console.log("Controller running");
+            this.user = {};
+            this.user.countries = [
+                { label: 'USA', id: 1 },
+                { label: 'India', id: 2 },
+                { label: 'Other', id: 3 }
+            ];
+            this.user.selectedCountryId = 2;
+            this.user.selectedCountry = this.user.countries[1];
+            this.user.submit = function () {
+                console.log(this.user);
+            };
+
+        }]);
+    </script>
+
+</body>
+
+</html>

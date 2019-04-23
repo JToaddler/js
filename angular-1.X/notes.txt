@@ -1,0 +1,169 @@
+: ng-app
+
+: ng-controller
+
+: ng-bind
+
+: ng-click
+
+: ng-repeat
+
+    ng-repeat="note in ctrl.notes1"
+    ng-repeat="note in ctrl.notes2 track by note.id">
+
+    we use the ng-repeat directive over an object instead of an array, the keys of the object will be sorted in a case-sensitive,
+    alphabetic order.
+
+    Helper Variables in ng-repeat
+
+        {{$first}}
+        {{$last}}
+        {{$middle}}
+        {{$odd}}
+        {{$even}}
+
+        ng-repeat-start
+        ng-repeat-end
+        
+
+
+: ng-cloak
+
+: ng-show
+        ng-show="myForm.uname.$error.required"
+
+: ng-hide
+
+: ng-class
+
+: ng-model
+
+: ng-submit="ctrl.submit1()"
+
+: ng-switch
+    <div ng-switch on="mainCtrl.tab">
+        <div ng-switch-when="first">
+        <div ng-switch-when="second">
+
+Validation
+
+    : required
+    : ng-required
+    : ng-minlength
+    : ng-maxlength
+    : ng-pattern
+    : type="email"
+    : type="number"
+    : type="date"
+    : type="url"
+    : ng-disabled
+
+    
+    $invalid
+    $valid
+    $pristine
+    $dirty
+    $error
+
+
+---
+
+
+Services :
+
+    build in angular service
+
+        1. $log
+        2. $window
+        3. $location
+        4. $window
+        5. $http
+
+    Custom Services
+        
+        1. angular.module('',[]).factory('myService',[function(){}]);
+
+        2. function Item(){}
+           angular.module('',[]).factory('myService',ItemService);
+        3. 
+           angular.module('',[])..provider('ItemService', function() {
+               this.$get =[function(){
+                    return new ItemService(optItems);
+               }]
+               
+           }).config(['ItemServiceProvider', function(ItemServiceProvider){
+
+           }])
+           
+
+
+AngularJS Filters:
+
+        Built in filter : 
+
+        {{ctrl.amount | number}}
+        {{ctrl.totalCost | currency}}
+        {{ctrl.totalCost | currency:'INR '}}
+        {{ctrl.name | uppercase}}
+        {{ctrl.name | lowercase}}
+        {{ctrl.startTime | date:'medium'}}
+        {{ctrl.startTime | date:'M/dd, yyyy'}}
+
+    
+        {{expression | filter1 | filter2}}
+        {{ctrl.name | lowercase | limitTo:5}}
+
+
+    
+        <li ng-repeat="note in ctrl.notes | filter:ctrl.filterOptions[ctrl.currentFilter] | orderBy:ctrl.sortOrder |
+        limitTo:5">
+        {{note.label}} - {{note.type}} - {{note.done}}
+
+
+        .controller('FilterCtrl', [function() {}]);
+
+unit test
+
+
+    * karma - test runner framework
+        
+
+
+    * jasmine - testing framework
+
+            describe - Controller ( describe can be nested)
+            
+            steps :
+
+                beforearch
+                afterEach
+                it
+            
+            Jsmine Matcher
+
+                toEqual
+                toBe
+                toBeTruthy
+                toBeFalsy
+                toBeDefined
+                toBeUndefined
+                toBeNull
+                toContain
+                toMatch
+
+
+HTML Forms :
+
+        <input type="checkbox" ng-model="ctrl.user.agree" ng-true-value="YES" ng-false-value="NO">
+
+        <div ng-init="otherGender = 'other'">
+        <input type="radio"  name="gender"  ng-model="user.gender" value="male">Male
+
+        <select ng-model="ctrl.selectedCountry" ng-options="c.label for c in ctrl.countries">
+        </select>
+
+        <select ng-model="ctrl.selectedCountryId" ng-options="c.id as c.label for c in ctrl.countries">
+        </select>
+
+        modelValue as labelValue for item in array    
+

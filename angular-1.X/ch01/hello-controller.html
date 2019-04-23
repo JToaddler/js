@@ -1,0 +1,28 @@
+<html ng-app="noteApp">
+
+<head>
+    <title></title>
+</head>
+
+<body ng-controller="MaintCtrl as ctrl">
+    {{ ctrl.helloMsg }} AngularJS
+    </br>
+    {{ ctrl.helloMsg }} AngularJS
+
+    <button ng-click="ctrl.changeMessage()"></button>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+</script>
+<script type="text/javascript">
+    angular.module('noteApp', []).controller('MaintCtrl', [function () {
+
+        let self = this;
+        self.helloMsg = 'Hello ';
+        self.changeMessage = function () {
+            console.log("afaf");
+            self.helloMsg = "Good bye";
+        };
+    }]);
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<html ng-app="notesApp">
+<style>
+    .item {
+        padding: 10px;
+    }
+</style>
+
+<head>
+    <title>HTTP Post Example</title>
+    <style>
+        .item {
+            padding: 10px;
+        }
+    </style>
+    <script src="./../../angular.js"></script>
+</head>
+
+<body ng-controller="MainCtrl as mainCtrl">
+    <h1>Hello Servers!</h1>
+    <div ng-repeat="todo in mainCtrl.items" class="item">
+        <div>
+            <span ng-bind="todo.label"></span> - by
+            <span ng-bind="todo.author"></span>
+        </div>
+    </div>
+
+    <div>
+        <form name="addForm" ng-submit="mainCtrl.add()">
+            <input type="text" ng-model="mainCtrl.newTodo.label" placeholder="Label" required />
+            <input type="text" ng-model="mainCtrl.newTodo.author" placeholder="Author" required />
+            <input type="submit" value="Add" ng-disabled="addForm.$invalid" />
+        </form>
+    </div>
+
+</body>
+<script type="text/javascript">
+
+    angular.module('notesApp', []).controller('MainCtrl', ['$http', function ($http) {
+        var self = this;
+        self.items = [];
+        self.newTodo = {};
+
+        var fetchToDOs = function () {
+            console.log('Callig Note API');
+            $http.get('http://localhost:8000/api/note').then(function (data) {
+                self.items = data.data;
+            }, function (error) {
+                console.error('Error while fetching notes');
+            });
+        };
+        console.log('Feching Notes');
+        fetchToDOs();
+        console.log('asafaascasas av');
+        self.add = function () {
+            $http.post('http://localhost:8000/api/note', self.newTodo, { xsrfWhitelistedOrigins: true }).then(function () {
+                fetchToDOs();
+            }, function () {
+                self.items = [];
+                console.error('Error while posting notes');
+            });
+        };
+
+
+    }]).config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.transformRequest.push(function (data) {
+            console.log('Logging from transformRequest : ', data);
+            return data;
+        });
+        $httpProvider.defaults.transformResponse.push(function (data) {
+            console.log('Logging response from transformResponse : ', data);
+            return data;
+        });
+    }]);
+
+</script>
+</html>
