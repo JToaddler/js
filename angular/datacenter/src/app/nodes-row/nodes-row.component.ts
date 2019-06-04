@@ -1,6 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NodesDetailComponent } from '../nodes-detail/nodes-detail.component';
+import { Node } from '../dashboard/dashboard.component';
 
 @Component({
   selector: '[app-nodes-row]',
@@ -9,7 +10,7 @@ import { NodesDetailComponent } from '../nodes-detail/nodes-detail.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NodesRowComponent {
-  @Input() node: any;
+  @Input() node: Node;
 
   constructor(private modalService: NgbModal) {}
 

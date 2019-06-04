@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Node } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-nodes-detail',
@@ -7,9 +8,9 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./nodes-detail.component.css']
 })
 export class NodesDetailComponent {
-  @Input() node;
+  @Input() node: Node;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) { }
 
   isDanger(prop) {
     return this.node[prop].used / this.node[prop].available > 0.7;

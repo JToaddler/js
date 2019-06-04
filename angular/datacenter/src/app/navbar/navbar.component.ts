@@ -9,10 +9,11 @@ import { Component, Output, EventEmitter, ViewEncapsulation } from '@angular/cor
 })
 export class NavbarComponent  {
 
-  @Output() onRefresh: EventEmitter<null> = new EventEmitter<null>();
+  @Output("reloadMetricEvent") emitter: EventEmitter<null> = new EventEmitter<null>();
 
-  refresh() {
-    this.onRefresh.emit();
+  reloadMetric() {
+    console.log('Emiting event from NavBar');
+    this.emitter.emit();
   }
 
 }

@@ -4,7 +4,7 @@ interface Metric {
   used: number;
   available: number;
 }
-interface Node {
+export interface Node {
   name: string;
   cpu: Metric;
   mem: Metric;
@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   generateData(): void {
+    console.log('Running Dashboard generateDate');
     this.cluster1 = [];
     this.cluster2 = [];
     this.cpu = { used: 0, available: 0 };
