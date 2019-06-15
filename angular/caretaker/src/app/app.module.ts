@@ -6,20 +6,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './component/login.component';
-import { CreateAccComponent } from './component/createAccount.component';
-import { CareTakerComponent } from './component/CareTakerComponent';
+import { CreateAccComponent } from './component/create.account.component';
+import { CareTakerComponent } from './component/careTaker.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AccConfirmationComponent } from './component/acc.confirmation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CreateAccComponent,
-    CareTakerComponent
+    CareTakerComponent,
+    AccConfirmationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

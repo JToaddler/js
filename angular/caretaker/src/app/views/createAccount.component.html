@@ -30,13 +30,13 @@
       <tr>
         <td>Address Line 1</td>
         <td>
-          <input name="addressLine1" [(ngModel)]="applicant.address.addressline1" placeholder=" Enter address line 1" />
+          <input name="line1" [(ngModel)]="applicant.address.line1" placeholder=" Enter address line 1" />
         </td>
       </tr>
       <tr>
         <td>Address Line 2</td>
         <td>
-          <input name="addressLine2" [(ngModel)]="applicant.address.addressline2" placeholder="Enter Address line 2" />
+          <input name="line2" [(ngModel)]="applicant.address.line2" placeholder="Enter Address line 2" />
         </td>
       </tr>
       <tr>
@@ -55,8 +55,8 @@
       <tr>
         <td>Marital Status </td>
         <td>
-          <input name="maritalStatus" type="radio" value="single" [(ngModel)]="applicant.maritalStatus"> Single
-          <input name="maritalStatus" type="radio" value="married" [(ngModel)]="applicant.maritalStatus"> Married
+          <input name="maritalStatus" type="radio" value="SINGLE" [(ngModel)]="applicant.maritalStatus"> Single
+          <input name="maritalStatus" type="radio" value="MARRIED" [(ngModel)]="applicant.maritalStatus"> Married
         </td>
       </tr>
       <tr>
@@ -77,8 +77,8 @@
         <td>
           <select name="occupation" [(ngModel)]="applicant.occupation">
             <option value="">--Select Any one--</option>
-            <option value="worker">Wroker</option>
-            <option value="student">Student</option>
+            <option value="WORKER">WORKER</option>
+            <option value="STUDENT">STUDENT</option>
           </select>
         </td>
       </tr>
