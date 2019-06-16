@@ -1,0 +1,100 @@
+<div><br>
+  <h4>Please complete the below forms : </h4><br>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <table>
+      <tr>
+        <td>First Name</td>
+        <td>
+          <input placeholder="Applicant First Name" [(ngModel)]="applicant.firstName" name="firstName" required />
+        </td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>
+          <input name="lastName" placeholder="Applicant Last Name" [(ngModel)]="applicant.lastName" required />
+        </td>
+      </tr>
+      <tr>
+        <td>Date of Birth</td>
+        <td>
+          <input name="dob" type="date" placeholder="Applicant Date of Birth" [(ngModel)]="applicant.dob" />
+        </td>
+      </tr>
+      <tr>
+        <td>PIN Code</td>
+        <td>
+          <input name="pincode" min="6" max="6" [(ngModel)]="applicant.address.pinCode"
+            placeholder="Applicant Postal Code" />
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 1</td>
+        <td>
+          <input name="line1" [(ngModel)]="applicant.address.line1" placeholder=" Enter address line 1" />
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 2</td>
+        <td>
+          <input name="line2" [(ngModel)]="applicant.address.line2" placeholder="Enter Address line 2" />
+        </td>
+      </tr>
+      <tr>
+        <td>City </td>
+        <td>
+          <input name="city" type="text" [(ngModel)]="applicant.address.city" placeholder="Applicant City" />
+        </td>
+      </tr>
+      <tr>
+        <td>State </td>
+        <td>
+          <input name="state" type="text" [(ngModel)]="applicant.address.state" placeholder="Applicant State"
+            required />
+        </td>
+      </tr>
+      <tr>
+        <td>Marital Status </td>
+        <td>
+          <input name="maritalStatus" type="radio" value="SINGLE" [(ngModel)]="applicant.maritalStatus"> Single
+          <input name="maritalStatus" type="radio" value="MARRIED" [(ngModel)]="applicant.maritalStatus"> Married
+        </td>
+      </tr>
+      <tr>
+        <td>Email Address</td>
+        <td>
+          <input name="email" type="email" [(ngModel)]="applicant.email" required placeholder="Applicant Email" />
+        </td>
+      </tr>
+      <tr>
+        <td>Contact Number </td>
+        <td>
+          <input name="phoneNumber" type="number" [(ngModel)]="applicant.phoneNumber" required
+            placeholder="Applicant Mobile Number" />
+        </td>
+      </tr>
+      <tr>
+        <td>Occupation </td>
+        <td>
+          <select name="occupation" [(ngModel)]="applicant.occupation">
+            <option value="">--Select Any one--</option>
+            <option value="WORKER">WORKER</option>
+            <option value="STUDENT">STUDENT</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Reason for Stay </td>
+        <td>
+          <textarea name="stayReason" minlength="10" [(ngModel)]="applicant.stayReason"
+            placeholder="Enter the reson for state. minimum 10 words required"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><button type="reset">Reset</button></td>
+        <td><button type="submit">Submit</button></td>
+        <td><button type="button" (click)="cancel()">Cancel</button></td>
+      </tr>
+    </table>
+  </form>
+  {{applicant | json}}
+</div>

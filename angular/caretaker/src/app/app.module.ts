@@ -10,6 +10,7 @@ import { CreateAccComponent } from './component/create.account.component';
 import { CareTakerComponent } from './component/careTaker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccConfirmationComponent } from './component/acc.confirmation.component';
+import { RouteGuardTest } from './service/route.guard.test';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { AccConfirmationComponent } from './component/acc.confirmation.component
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RouteGuardTest],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
