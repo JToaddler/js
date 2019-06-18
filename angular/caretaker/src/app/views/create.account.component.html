@@ -20,38 +20,7 @@
           <input name="dob" type="date" placeholder="Applicant Date of Birth" [(ngModel)]="applicant.dob" />
         </td>
       </tr>
-      <tr>
-        <td>PIN Code</td>
-        <td>
-          <input name="pincode" min="6" max="6" [(ngModel)]="applicant.address.pinCode"
-            placeholder="Applicant Postal Code" />
-        </td>
-      </tr>
-      <tr>
-        <td>Address Line 1</td>
-        <td>
-          <input name="line1" [(ngModel)]="applicant.address.line1" placeholder=" Enter address line 1" />
-        </td>
-      </tr>
-      <tr>
-        <td>Address Line 2</td>
-        <td>
-          <input name="line2" [(ngModel)]="applicant.address.line2" placeholder="Enter Address line 2" />
-        </td>
-      </tr>
-      <tr>
-        <td>City </td>
-        <td>
-          <input name="city" type="text" [(ngModel)]="applicant.address.city" placeholder="Applicant City" />
-        </td>
-      </tr>
-      <tr>
-        <td>State </td>
-        <td>
-          <input name="state" type="text" [(ngModel)]="applicant.address.state" placeholder="Applicant State"
-            required />
-        </td>
-      </tr>
+
       <tr>
         <td>Marital Status </td>
         <td>
@@ -87,6 +56,42 @@
         <td>
           <textarea name="stayReason" minlength="10" [(ngModel)]="applicant.stayReason"
             placeholder="Enter the reson for state. minimum 10 words required"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>PIN Code</td>
+        <td>
+          <input name="pincode" minlength="6" maxlength="6" [(ngModel)]="applicant.address.pinCode"
+            placeholder="Applicant Postal Code" (blur)="validateZIP()" />
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 1</td>
+        <td>
+          <input name="line1" [(ngModel)]="applicant.address.line1" placeholder=" Enter address line 1" max="75" />
+        </td>
+      </tr>
+      <tr>
+        <td>Address Line 2</td>
+        <td>
+          <select name="line2" [(ngModel)]="applicant.address.line2">
+            <option *ngFor="let name of addressName" value={{name}}>
+              {{name}}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Landmark </td>
+        <td>
+          <input name="landMark" type="text" [(ngModel)]="applicant.address.landMark" placeholder="Applicant City" />
+        </td>
+      </tr>
+      <tr>
+        <td>State </td>
+        <td>
+          <input name="state" type="text" [(ngModel)]="applicant.address.state" placeholder="Applicant State"
+            required />
         </td>
       </tr>
       <tr>

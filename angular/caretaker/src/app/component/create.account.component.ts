@@ -5,6 +5,8 @@ import { Address } from 'src/app/model/address';
 import { AccountService } from '../service/account.service';
 import { Account } from '../model/account';
 import { AccountStatus } from '../model/account.status';
+import { UtilityService } from '../service/utility.service';
+
 
 
 @Component({
@@ -14,7 +16,12 @@ import { AccountStatus } from '../model/account.status';
 export class CreateAccComponent implements OnInit {
 
   applicant: Applicant;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private accountService: AccountService) { }
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private accountService: AccountService,
+              private utilityService: UtilityService) { }
+
+  addressName = new Set();
 
   save(): void {
     console.log('Save applicant form :' + JSON.stringify(this.applicant));
@@ -40,6 +47,23 @@ export class CreateAccComponent implements OnInit {
       this.applicant = new Applicant();
       this.applicant.address = new Address();
       this.accountService.setAccStatus(AccountStatus.GUEST);
+    }
+  }
+
+  validateZIP() {
+
+    if (this.applicant.address.pinCode && this.applicant.address.pinCode.toString().length === 6) {
+      const response = this.utilityService.getZipCodeDetail(this.applicant.address.pinCode);
+      response.subscribe((zipCodeResponse) => {
+        this.addressName = new Set();
+        console.log('Zip Code ' + JSON.stringify(zipCodeResponse));
+        zipCodeResponse.PostOffice.forEach(element => {
+          this.addressName.add(element.Name);
+          this.applicant.address.state = element.State;
+        });
+      }, (error) => {
+        console.log(error);
+      });
     }
   }
 }
