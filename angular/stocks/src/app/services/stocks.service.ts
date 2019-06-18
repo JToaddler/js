@@ -5,6 +5,11 @@ const stocks: Array<string> = ['AAPL', 'FB', 'AMZN', 'TWTR', 'GOOG'];
 const service = 'https://angular2-in-action-api.herokuapp.com';
 
 
+export interface NewsInterface {
+  url: string;
+  title: string;
+}
+
 export interface StockInterface {
   symbol: string;
   lastTradePriceOnly: number;
@@ -37,6 +42,10 @@ export class StocksService {
     if (symbols) {
       return this.http.get<Array<StockInterface>>((service + '/stocks/snapshot?symbols=' + symbols.join()));
     }
+  }
+
+  getNewsSnapshot(source = 'the-wall-street-journal') {
+    return this.http.get<NewsInterface>(service + '/stocks/news/snapshot?source=' + source);
   }
 
 }
