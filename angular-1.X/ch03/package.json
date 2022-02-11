@@ -2,7 +2,7 @@
     "name": "ajs-up-running-chapter-3",
     "version": "0.0.1",
     "devDependencies": {
-        "karma": "0.12.28",
+        "karma": "6.3.14",
         "karma-jasmine": "~0.2.0",
         "karma-chrome-launcher": "~0.1.7"
     },
